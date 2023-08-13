@@ -1,0 +1,165 @@
+
+
+
+MySQL Server setup
+
+
+Open Terminal : set up PATH - done
+
+Open Terminal : mysql -u root -p
+
+Password is Lekshmi@123
+
+
+create database strabagInv
+
+———————————————————————————
+
+Creating react JS for front end
+
+Node js install 
+
+This package has installed:
+	•	Node.js v18.16.1 to /usr/local/bin/node
+	•	npm v9.5.1 to /usr/local/bin/npm
+Make sure that /usr/local/bin is in your $PATH.
+Checking in terminal:
+Lekshmis-Air:~ lekshmi$ node --version
+v18.16.1
+Lekshmis-Air:~ lekshmi$ npm --version
+9.5.1
+
+
+Create react using below command
+
+npx create-react-app react-fileupload --use-npm
+
+Cd react-fileupload 
+npm start
+
+
+  Local:            http://localhost:3000
+  On Your Network:  http://192.168.0.197:3000
+
+___________________________________________________________________
+
+
+The logback.xml file should typically be placed in the src/main/resources directory rather than the src/main/resources/static directory. The resources/static directory is typically used for static web content and not for configuration files.
+
+———
+
+@WebMvcTest annotation disables full auto configuration . How to avoid that
+
+
+ CSVControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+
+
+LekshmiVisalArun
+
+d@8THNW8KmLgNKG -->Arunraj@1986
+
+git remote add origin LekshmiVisalArun@https://github.com/LekshmiVisalArun/fileParsing.git
+
+--
+
+Github new account:
+Enter your email: lekshmi.visal@gmail.com
+Password:Arunraj@1986
+Username :LekshmiVisal
+
+LekshmiVisal
+https:  https://github.com/LekshmiVisal/FileParsing.git
+ssh: git@github.com:LekshmiVisal/FileParsing.git
+
+https://LekshmiVisal@github.com/LekshmiVisal/FileParsing.git
+
+Could you please write sample restAPI for adding a job for file parsing (“register-job”).
+File should be parsed in asynchronous way, result should be stored in DB.
+All data (except files) should be in JSON format.
+ “register-job” should return id of the job. 
+
+Technology : spring boot . ( Application starting point is FileParsingApplication.java , controller file name is CSVController.java)
+database: MySQL. data base details configured in application.properties file
+
+-----------
+
+
+FileParsingApplication.java (Application starting point):
+
+CSVController.java (Controller file):
+
+FileParsingService.java (Service class):
+
+FileParser.java (Utility class for file parsing):
+
+
+JobStatusRepository.java (Interface for job status database operations):
+
+JobStatus.java (POJO for job status):
+
+
+
+-----
+
+
+table name : 
+1. Job_details
+fields : Job_id (primary_key)
+file_name
+operation_name 
+status
+date
+
+2. File_details
+Job_id (Foreign_key)
+section_name 
+class1_name
+class1_code
+class2_name 
+class2_code
+
+CREATE TABLE Job_details (
+    Job_id int NOT NULL,
+    file_name varchar(255) NOT NULL,
+    operation_name varchar(255),
+    status varchar(255),
+    date DATETIME,
+    PRIMARY KEY (Job_id) 
+);
+
+CREATE TABLE File_details (
+    Job_id int NOT NULL,
+    section_name varchar(255),
+    class1_name varchar(255),
+    class1_code varchar(255),
+    class2_name varchar(255),
+    class2_code varchar(255),
+    FOREIGN KEY (Job_id) REFERENCES Job_details(Job_id)
+);
+CREATE TABLE Job_status (
+Job_id int NOT NULL,
+status varchar(255),
+FOREIGN KEY (Job_id) REFERENCES Job_details(Job_id)
+);
+
+DATETIME
+
+  FOREIGN KEY (Job_id) REFERENCES Job_details(Job_id)
+
+
+
+----
+
+
+This JobDetailsRepository interface extends the JpaRepository interface, which provides a wide range of methods for performing CRUD (Create, Read, Update, Delete) operations on the JobDetails entity.
+
+By extending JpaRepository, you inherit methods such as save(), findById(), findAll(), and many more. These methods can be used to perform various operations on the Job_details table, such as inserting a new row, fetching rows by ID or other criteria, updating rows, and deleting rows.
+
+
+RestAPI3 : List<FileDetails> findAll();
+
+        when(fileParsingService.parseAndSaveFile(fileCaptor.capture(), org.mockito.ArgumentMatchers.anyString()))
+                .thenReturn(CompletableFuture.completedFuture(null));
+
+       verify(fileParsingService).parseAndSaveFile(fileCaptor.capture(), org.mockito.ArgumentMatchers.anyString());
+        MultipartFile uploadedFile = fileCaptor.getValue();
